@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ติดต่อเรา | นวัตกรรมการท่องเที่ยว กาฬสินธุ์</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+            margin: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('img/img4.jpg'); /* ใช้พื้นหลังเดียวกับหน้าหลัก */
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        .contact-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+        h1 {
+            color: #2c5b4c;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box; /*
+            เพื่อให้ padding ไม่ทำให้กล่องขยายเกิน width */
+            font-family: 'Sarabun', sans-serif;
+            font-size: 16px;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .submit-btn {
+            background-color: #2c5b4c;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .submit-btn:hover {
+            background-color: #3a7a65;
+            transform: translateY(-3px);
+        }
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            color: #555;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="contact-container">
+        <h1>ติดต่อเรา</h1>
+        <form id="contactForm" action="https://formspree.io/f/mwpnywbo" method="POST">
+            <div class="form-group">
+                <label for="name">1. ชื่อ</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">2. อีเมล</label>
+                <input type="email" id="email" name="email" placeholder="ต้องเป็น @gmail.com หรือ @hotmail.com" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">3. เบอร์โทร</label>
+                <input type="tel" id="phone" name="phone" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+            </div>
+            <div class="form-group">
+                <label for="message">4. ข้อความ</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">5. ส่งข้อความ</button>
+        </form>
+        <a href="index.html" class="back-link">กลับสู่หน้าหลัก</a>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            // หยุดการทำงานปกติของฟอร์มก่อน
+            event.preventDefault();
+
+            const emailInput = document.getElementById('email');
+            const emailValue = emailInput.value.toLowerCase(); // แปลงเป็นตัวพิมพ์เล็กทั้งหมดเพื่อง่ายต่อการเช็ค
+
+            // ตรวจสอบว่าอีเมลลงท้ายด้วย @gmail.com หรือ @hotmail.com หรือไม่
+            const isGmail = emailValue.endsWith('@gmail.com');
+            const isHotmail = emailValue.endsWith('@hotmail.com');
+
+            if (isGmail || isHotmail) {
+                // ถ้าอีเมลถูกต้อง, ดำเนินการส่งฟอร์ม
+                this.submit(); 
+            } else {
+                // ถ้าอีเมลไม่ถูกต้อง, แจ้งเตือนผู้ใช้
+                alert('อีเมลไม่ถูกต้อง! กรุณาใช้อีเมลที่ลงท้ายด้วย @gmail.com หรือ @hotmail.com เท่านั้น');
+                emailInput.focus(); // ให้เคอร์เซอร์กลับไปที่ช่องอีเมล
+            }
+        });
+    </script>
+</body>
+</html>

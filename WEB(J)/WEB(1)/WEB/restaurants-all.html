@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ร้านอาหารและคาเฟ่ทั้งหมด | กาฬสินธุ์</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="manifest" href="/manifest.json">
+    <style>
+        /* General Styles */
+        body { font-family: 'Sarabun', sans-serif; margin: 0; background-color: #f4f7f6; color: #333; background-image: url('img/img4.jpg'); background-attachment: fixed; background-size: cover; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        /* Header / Nav Bar */
+        header { background-color: white; padding: 15px 30px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 24px; font-weight: bold; color: #2c5b4c; }
+        nav a { margin: 0 15px; text-decoration: none; color: #555; font-weight: bold; }
+        .auth-buttons a { text-decoration: none; padding: 8px 16px; border-radius: 20px; margin-left: 10px; }
+        .login-btn { background-color: transparent; border: 2px solid #2c5b4c; color: #2c5b4c; }
+        .signup-btn { background-color: #2c5b4c; color: white; }
+        /* Content Sections */
+        .section { padding: 60px 0; }
+        .section-title { text-align: center; font-size: 36px; margin-bottom: 40px; color: #111; background: rgba(255, 255, 255, 0.5); padding: 10px; border-radius: 10px; display: inline-block; }
+        .section-title-wrapper { text-align: center; margin-bottom: 40px; }
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: rgba(255, 255, 255, 0.25); box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.18); overflow: hidden; transition: transform 0.3s ease; display: flex; flex-direction: column; height: 100%; }
+        .card:hover { transform: translateY(-10px); }
+        .card-link { text-decoration: none; color: inherit; }
+        .card img { width: 100%; height: 200px; object-fit: cover; }
+        .card-content { padding: 20px; flex-grow: 1; }
+        .card-content h3 { margin-top: 0; color: #000; }
+        .card-content p { color: #111; }
+        /* Review Summary */
+        .review-summary { display: flex; align-items: center; gap: 15px; margin: 10px 0; font-size: 16px; }
+        .stars { color: #ffc107; }
+        .review-text .score { font-weight: bold; color: #111; }
+        .review-text .review-count { color: #333; margin-left: 8px; }
+        /* Footer */
+        footer { background-color: #2c5b4c; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+        /* 'See All' Button Styles */
+        .more-button-container { text-align: center; margin-top: 40px; }
+        .more-button { display: inline-block; background-color: #2c5b4c; color: white; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: bold; font-size: 16px; transition: background-color 0.3s, transform 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
+        .more-button:hover { background-color: #3a7a65; transform: translateY(-3px); }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Moonlight</div>
+        <nav>
+            <a href="index.html#attractions">ที่ท่องเที่ยว</a>
+            <a href="index.html#restaurants">ร้านอาหาร</a>
+            <a href="index.html#accommodations">ห้องพัก</a>
+        </nav>
+        <div class="auth-buttons">
+            <a href="login.html" class="login-btn">เข้าสู่ระบบ</a>
+            <a href="signup.html" class="signup-btn">สมัครสมาชิก</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="restaurants" class="section">
+            <div class="section-title-wrapper">
+                 <h2 class="section-title">ร้านอาหารและคาเฟ่ทั้งหมดในกาฬสินธุ์</h2>
+            </div>
+            <div class="card-grid">
+                <a href="ploen-kalasin.html" class="card-link"><div class="card"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdCgLyrMwpNLt7OiS7AM7aKSvnp9r0A018Dw&s" alt="ร้านอาหาร"><div class="card-content"><h3>เพลิน กาฬสินธุ์</h3><div class="review-summary"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div><div class="review-text"><span class="score">4.4</span><span class="review-count">(210 รีวิว)</span></div></div><p>ร้านอาหารบรรยากาศดี มีดนตรีสด พร้อมเมนูหลากหลายใจกลางเมือง</p></div></div></a>
+                <a href="somtum-sam-pee-nong.html" class="card-link"> <div class="card"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsJF_1wgWeZ-CA2foIR_VjorrXHKC6FOzkvw&s" alt="ร้านส้มตำสามพี่น้อง"> <div class="card-content"> <h3>ส้มตำสามพี่น้อง</h3> <div class="review-summary"> <div class="stars"> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> </div> <div class="review-text"> <span class="score">5.0</span> <span class="review-count">(99 รีวิว)</span> </div> </div> <p>ร้านส้มตำชื่อดัง รสชาติจัดจ้าน ถูกใจคนท้องถิ่นและนักท่องเที่ยว</p> </div> </div> </a>
+                <a href="berler-shabu.html" class="card-link"> <div class="card"> <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4nozZ7gRoEiLor--_OfHjPdXCm-KdQA6fQzKqoC8Ma4mu0YnPEUaK7TlT4gxnqJ-5j57B4isAMinT8BaQJMloXKRB9CWEqTmRLWSGrF9J24zY7grj-Rr-WPcW6a_AUoGR2OZNBY=w408-h408-k-no" alt="เบ้อเร่อ ชาบูพันธุ์แท้"> <div class="card-content"> <h3>เบ้อเร่อ ชาบูพันธุ์แท้</h3> <div class="review-summary"> <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div> <div class="review-text"><span class="score">4.8</span><span class="review-count">(550 รีวิว)</span></div> </div> <p>บุฟเฟ่ต์ชาบูและปิ้งย่างชื่อดัง ไลน์อาหารจัดเต็ม</p> </div> </div> </a>
+                <a href="the-loft-cafe.html" class="card-link"><div class="card"><img src="https://img.wongnai.com/p/400x0/2021/04/03/14e929371923466390d70cb05c8df921.jpg" alt="The Loft Cafe Kalasin"><div class="card-content"><h3>The Loft Cafe Kalasin</h3><div class="review-summary"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i></div><div class="review-text"><span class="score">4.3</span><span class="review-count">(150 รีวิว)</span></div></div><p>คาเฟ่สไตล์ลอฟท์ใจกลางเมือง บรรยากาศเท่ๆ ดิบๆ สำหรับคอกาแฟ</p></div></div></a>
+                <a href="suk-plai-na-cafe.html" class="card-link"> <div class="card"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeeWQuEaVoi1MQzGKIfBIARfRrqamRFg1amw&s" alt="สุขปลายนา คาเฟ่"> <div class="card-content"> <h3>สุขปลายนา คาเฟ่</h3> <div class="review-summary"> <div class="stars"> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star-half-alt"></i> </div> <div class="review-text"> <span class="score">4.7</span> <span class="review-count">(120 รีวิว)</span> </div> </div> <p>คาเฟ่กลางทุ่งนา บรรยากาศร่มรื่น สบายตา เหมาะแก่การพักผ่อน</p> </div> </div> </a>
+                <a href="pingfai-kalasin.html" class="card-link"> <div class="card"> <img src="https://lh3.googleusercontent.com/gps-cs-s/AC9h4np7817Hc6HbDWTCWgtOxmYbzyobHyLSBFtQTyYMONiLrcUqX1Sb4KRcxOxYnCXxCbPBcRJ0eDTkwdRhLvNui63BmaBOJB2sC_k9kPac4dg2N2OM-uKAdoow6LGUwQkfhUPc8VEc-Q=w408-h544-k-no" alt="ร้านอาหารผิงไฟ"> <div class="card-content"> <h3>ร้านอาหารผิงไฟ</h3> <div class="review-summary"> <div class="stars"> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i> <i class="far fa-star"></i> </div> <div class="review-text"> <span class="score">4.1</span> <span class="review-count">(95 รีวิว)</span> </div> </div> <p>ร้านอาหารบรรยากาศดี มีเมนูหลากหลาย ทั้งอาหารไทยและอีสาน</p> </div> </div> </a>
+            </div>
+
+             <div class="more-button-container">
+                <a href="index.html#restaurants" class="more-button">กลับไปหน้าหลัก</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Kalasin Tourism Innovation Project | จัดทำเพื่อการศึกษา</p>
+    </footer>
+
+</body>
+</html>

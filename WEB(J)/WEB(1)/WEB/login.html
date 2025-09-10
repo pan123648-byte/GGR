@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เข้าสู่ระบบ | กาฬสินธุ์</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('https://images.unsplash.com/photo-1598144478144-b01683445535?q=80&w=2071&auto=format&fit=crop');
+            background-size: cover;
+        }
+        .login-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 350px;
+        }
+        h2 {
+            color: #2c5b4c;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 25px;
+            background-color: #2c5b4c;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #3e8e75;
+        }
+        .signup-link {
+            display: block;
+            margin-top: 20px;
+            color: #555;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>เข้าสู่ระบบ</h2>
+        <div class="input-group">
+            <label for="username">ชื่อผู้ใช้ (Username)</label>
+            <input type="text" id="username" placeholder="กรอกชื่อผู้ใช้ของคุณ">
+        </div>
+        <div class="input-group">
+            <label for="password">รหัสผ่าน (Password)</label>
+            <input type="password" id="password" placeholder="กรอกรหัสผ่าน">
+        </div>
+        <button id="login-action-btn">เข้าสู่ระบบ</button>
+        <a href="signup.html" class="signup-link">ยังไม่มีบัญชี? สมัครสมาชิก</a>
+    </div>
+
+    <script>
+        document.getElementById('login-action-btn').addEventListener('click', function() {
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const username = usernameInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            if (!username || !password) {
+                alert('กรุณากรอกชื่อผู้ใช้และรหัสผ่านครับ');
+                return;
+            }
+
+            // ดึงข้อมูลผู้ใช้ทั้งหมดจาก localStorage
+            const users = JSON.parse(localStorage.getItem('tourismAppUsers')) || [];
+            
+            // ค้นหาผู้ใช้ที่ตรงกับชื่อและรหัสผ่าน
+            const foundUser = users.find(user => user.username === username && user.password === password);
+
+            if (foundUser) {
+                // หากเจอ, บันทึกสถานะล็อกอินและไปที่หน้าหลัก
+                localStorage.setItem('loggedInUser', foundUser.username);
+                window.location.href = './index.html';
+            } else {
+                // หากไม่เจอ, แจ้งเตือน
+                alert('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้องครับ');
+            }
+        });
+    </script>
+</body>
+</html>

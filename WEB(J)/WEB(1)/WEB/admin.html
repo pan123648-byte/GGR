@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบจัดการผู้ใช้ (Admin)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c5b4c;
+            text-align: center;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        .user-list {
+            list-style: none;
+            padding: 0;
+        }
+        .user-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+        .user-item:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .user-name {
+            font-weight: bold;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+        .action-btn {
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .view-btn {
+            background-color: #0275d8;
+        }
+        .view-btn:hover {
+            background-color: #025aa5;
+        }
+        .delete-btn {
+            background-color: #d9534f;
+        }
+        .delete-btn:hover {
+            background-color: #c9302c;
+        }
+        .delete-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            text-align: center;
+            width: 100%;
+            color: #2c5b4c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1><i class="fas fa-users-cog"></i> ระบบจัดการผู้ใช้งาน</h1>
+        <ul id="user-list-container" class="user-list">
+            </ul>
+        <a href="index.html" class="back-link">กลับสู่หน้าหลัก</a>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const ADMIN_PASSWORD = 'ball1234';
+        const ADMIN_USERNAME = '1234';
+
+        function authenticate() {
+            const password = prompt("กรุณากรอกรหัสผ่านสำหรับผู้ดูแลระบบ:");
+            if (password === ADMIN_PASSWORD) {
+                loadUsers();
+            } else {
+                alert("รหัสผ่านไม่ถูกต้อง!");
+                window.location.href = './index.html';
+            }
+        }
+
+        const userListContainer = document.getElementById('user-list-container');
+
+        function loadUsers() {
+            const users = JSON.parse(localStorage.getItem('tourismAppUsers')) || [];
+            userListContainer.innerHTML = '';
+
+            if (users.length === 0) {
+                userListContainer.innerHTML = '<p style="text-align:center;">ยังไม่มีผู้ใช้ในระบบ</p>';
+                return;
+            }
+
+            users.forEach(user => {
+                const userItem = document.createElement('li');
+                userItem.className = 'user-item';
+
+                const userNameSpan = document.createElement('span');
+                userNameSpan.className = 'user-name';
+                userNameSpan.textContent = user.username;
+
+                const buttonGroup = document.createElement('div');
+                buttonGroup.className = 'button-group';
+                
+                // --- Create View Profile Button ---
+                const viewButton = document.createElement('a');
+                viewButton.href = `./view-profile.html?user=${encodeURIComponent(user.username)}`;
+                viewButton.className = 'action-btn view-btn';
+                viewButton.textContent = 'ดูโปรไฟล์';
+
+                // --- Create Delete Button ---
+                const deleteButton = document.createElement('button');
+                deleteButton.className = 'action-btn delete-btn';
+                deleteButton.textContent = 'ลบผู้ใช้';
+
+                if (user.username === ADMIN_USERNAME) {
+                    deleteButton.disabled = true;
+                    userNameSpan.textContent += ' (Admin)';
+                } else {
+                    deleteButton.onclick = function() {
+                        deleteUser(user.username);
+                    };
+                }
+
+                userItem.appendChild(userNameSpan);
+                buttonGroup.appendChild(viewButton);
+                buttonGroup.appendChild(deleteButton);
+                userItem.appendChild(buttonGroup);
+                userListContainer.appendChild(userItem);
+            });
+        }
+
+        function deleteUser(usernameToDelete) {
+            if (confirm(`คุณแน่ใจหรือไม่ว่าต้องการลบผู้ใช้ '${usernameToDelete}'?`)) {
+                let users = JSON.parse(localStorage.getItem('tourismAppUsers')) || [];
+                const updatedUsers = users.filter(user => user.username !== usernameToDelete);
+                localStorage.setItem('tourismAppUsers', JSON.stringify(updatedUsers));
+                loadUsers();
+            }
+        }
+
+        authenticate();
+    });
+    </script>
+
+</body>
+</html>
